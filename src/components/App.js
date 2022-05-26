@@ -2,10 +2,8 @@ import '../scss/App.scss';
 import {  } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from 'react';
+import Home from "./Home";
 import NavbarRealtor from "./NavbarRealtor";
-import FooterRealtor from "./FooterRealtor";
-import IndexSearch from "./IndexSearch";
-import TitleCardContainer from './TitleCardContainer';
 
 class App extends React.Component {
     constructor(props) {
@@ -24,9 +22,6 @@ class App extends React.Component {
         return (
             <React.Fragment>
                 <NavbarRealtor></NavbarRealtor>
-                <IndexSearch ></IndexSearch>
-                <TitleCardContainer recommendTitles={this.state.recommendTitles} testTitle={this.state.testTitle}></TitleCardContainer>
-                <FooterRealtor></FooterRealtor>
             </React.Fragment>
         );
     }
