@@ -2,7 +2,7 @@ import {Button, Container, Form, FormGroup} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from 'react';
 
-class Login extends React.Component {
+class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -26,8 +26,8 @@ class Login extends React.Component {
                             <FormGroup className="mb-3">
                                 <Form.Check type="checkbox" id="rememberLogin" label="Ghi nhớ đăng nhập"></Form.Check>
                             </FormGroup>
-                            <Button variant="primary" type="submit">
-                                Submit
+                            <Button variant="outline-primary" type="submit" className="w-100">
+                                Đăng nhập
                             </Button>
                         </Form>
                     </div>
@@ -37,4 +37,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default SignIn;

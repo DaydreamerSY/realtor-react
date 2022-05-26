@@ -2,7 +2,6 @@ import '../scss/App.scss';
 import {  } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from 'react';
-import Home from "./Home";
 import NavbarRealtor from "./NavbarRealtor";
 
 class App extends React.Component {

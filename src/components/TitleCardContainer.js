@@ -19,7 +19,7 @@ class TitleCardContainer extends React.Component {
                         <Row className='mt-4'>
                             <div className='row-title'>{title.title}</div>
                             <a href={title.link}>View all recommended house in Bao Loc</a>
-                            {/* <CardPost></CardPost> */}
+                             <CardPost></CardPost>
                         </Row>
                     ))}
                 </div>

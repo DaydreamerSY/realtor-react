@@ -3,9 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import '../scss/NavbarRealtor.scss';
 import {BrowserRouter, Routes, Route, Link, Navigate} from "react-router-dom";
-import Login from "./Login";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 import ErrorPage from "./ErrorPage";
 import Home from "./Home";
+import BuyHome from "./BuyHome";
 
 class NavbarRealtor extends React.Component {
 
@@ -44,7 +46,7 @@ class NavbarRealtor extends React.Component {
                                 <Nav className="me-auto">
                                     <NavDropdown title="Bán" id="sell-nav-dropdown"
                                                  className="hover-underline-animation" href="#Bán">
-                                        <NavDropdown.Item href="#action/3.1">Bán căn hộ</NavDropdown.Item>
+                                        <NavDropdown.Item href="/buy">Bán căn hộ</NavDropdown.Item>
                                         <NavDropdown.Item href="#action/3.2">Bán nhà riêng</NavDropdown.Item>
                                         <NavDropdown.Item href="#action/3.3">Bán nhà biệt thự</NavDropdown.Item>
                                         <NavDropdown.Item href="#action/3.3">Bán kho/xưởng</NavDropdown.Item>
@@ -86,8 +88,8 @@ class NavbarRealtor extends React.Component {
                                             </svg>
                                         }
                                     </Nav.Link>
-                                    <Nav.Link className="hover-underline-animation" href="/login" to="/login">Đăng nhập</Nav.Link>
-                                    <Nav.Link className="hover-underline-animation">Đăng ký</Nav.Link>
+                                    <Nav.Link className="hover-underline-animation" href="/signin" to="/signin">Đăng nhập</Nav.Link>
+                                    <Nav.Link className="hover-underline-animation" href="/signup">Đăng ký</Nav.Link>
                                     <Button variant="outline-danger float-end">Đăng tin</Button>
                                 </Nav>
                             </Navbar.Collapse>
@@ -97,7 +99,9 @@ class NavbarRealtor extends React.Component {
                 </div>
                 <Routes>
                     <Route path="/home" element={ <Home/> }></Route>
-                    <Route exact path="/login" element={ <Login/>}></Route>
+                    <Route path="/buy" element={ <BuyHome/> }></Route>
+                    <Route exact path="/signin" element={ <SignIn/>}></Route>
+                    <Route exact path="/signup" element={ <SignUp/>}></Route>
                     {/*<Route path="*" element={ <Navigate to="/home"/> }></Route>*/}
                     <Route path="*" element={ <ErrorPage/> }></Route>
                 </Routes>
