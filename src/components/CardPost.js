@@ -1,83 +1,48 @@
 import React from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
-import {} from 'react-bootstrap';
+import {Button, Card, Col, Row} from "react-bootstrap";
 import '../scss/Cards.scss';
+import {Link} from "react-router-dom";
 
-class CardPost extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            items: []
-        };
-    }
+function CardPost(props) {
 
-    componentDidMount() {
+    const {post} = props;
+    const {id, title, description, area_by_m2, width_of_facade, is_legal, price } = post;
+    return (
+        <Col>
+            <Card style={{width: 18 + `rem`}}>
+                <div className="timer">3 mins ago</div>
+                <Card.Img src="https://cdn.eva.vn/upload/3-2021/images/2021-09-10/image3-1631239323-278-width600height350.jpg" className="card-img-top"
+                          alt="..."/>
+                <Card.Body>
+                    <Card.Title> {title} </Card.Title>
+                    <Card.Text> {description} </Card.Text>
+                    <Row>
+                        <Col><p> Diện tích <span>{area_by_m2} m<sup>2</sup></span></p></Col>
+                        <Col><p> Mặt tiền <span>{width_of_facade} m<sup>2</sup></span></p></Col>
+                        <Col><p>Pháp lý: <span>Sổ đỏ</span></p></Col>
+                    </Row>
+                    <Row>
+                        <p className="card-text mb-2">Địa chỉ:<br/><i>Lộc Tiến, Bảo Lộc, Lâm Đồng</i></p>
+                    </Row>
+                    <Row>
+                        <Col className="text-center">
+                            <Button href="#" variant="outline-primary">Xem thêm</Button>
+                        </Col>
+                        <Col className="text-center">
+                            <Button variant="outline-success">Lưu</Button>
+                        </Col>
+                    </Row>
+                    <Row className="mt-2">
+                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Lâm Đồng</Link>
+                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Bảo Lộc</Link>
+                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Sổ hồng</Link>
+                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Lộc Tiến</Link>
+                    </Row>
+                </Card.Body>
 
-        let headers = new Headers();
-
-        // headers.append("Access-Control-Allow-Origin", "*");
-        // headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-        fetch("https://realestate-restapi-django3.herokuapp.com/api/re-post-list/", {
-        // fetch("https://jsonplaceholder.typicode.com/users", {
-            method: 'GET',
-            mode: 'cors',
-            credentials: 'include',
-            // headers: headers
-        })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result.items
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-    }
-
-    // componentDidMount() {
-    //     fetch(
-    //         "https://jsonplaceholder.typicode.com/users")
-    //         .then((res) => res.json())
-    //         .then((json) => {
-    //             this.setState({
-    //                 items: json,
-    //                 DataisLoaded: true
-    //             });
-    //         })
-    // }
-
-    render() {
-        const { error, isLoaded, items } = this.state;
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
-            return <div>Loading...</div>;
-        } else {
-            return (
-                <ul>
-                    {items.map(item => (
-                        <li key={item.id}>
-                            {item.name} {item.price}
-                        </li>
-                    ))}
-                </ul>
-            );
-        }
-    }
+            </Card>
+        </Col>
+    );
 }
 
 export default CardPost;
-// fetch("https://realestate-restapi-django5.herokuapp.com/api/re-post-list/?format=json")
