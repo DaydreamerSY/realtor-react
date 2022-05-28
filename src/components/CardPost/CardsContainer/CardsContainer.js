@@ -45,7 +45,7 @@ function CardsContainer(props) {
     return (
         <Row>
             {postList.map((post) => (
-                <Col> <CardPost post={post}/> </Col>
+                <Col key={post.id}> <CardPost post={post}/> </Col>
             ))}
         </Row>
     );

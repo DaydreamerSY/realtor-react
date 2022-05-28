@@ -1,18 +1,25 @@
 import React from 'react';
 import {Button, Card, Col, Row} from "react-bootstrap";
 import './CardPost.scss';
-import {Link} from "react-router-dom";
+import {Link, Navigate, useNavigate} from "react-router-dom";
 
 function CardPost(props) {
 
     const {post} = props;
-    const {id, title, description, area_by_m2, width_of_facade, is_legal, price } = post;
+    const {id, title, description, area_by_m2, width_of_facade} = post;
+
+    const apiUrl = "https://realestate-restapi-django3.herokuapp.com/api/re-post-detail/";
+    const detailUrl = apiUrl + id + "/";
+
+
     return (
         <Col>
             <Card style={{width: 18 + `rem`}}>
                 <div className="timer">3 mins ago</div>
-                <Card.Img src="https://cdn.eva.vn/upload/3-2021/images/2021-09-10/image3-1631239323-278-width600height350.jpg" className="card-img-top"
-                          alt="..."/>
+                <Card.Img
+                    src="https://cdn.eva.vn/upload/3-2021/images/2021-09-10/image3-1631239323-278-width600height350.jpg"
+                    className="card-img-top"
+                    alt="..."/>
                 <Card.Body>
                     <Card.Title> {title} </Card.Title>
                     <Card.Text> {description} </Card.Text>
@@ -26,7 +33,7 @@ function CardPost(props) {
                     </Row>
                     <Row>
                         <Col className="text-center">
-                            <Button href="#" variant="outline-primary">Xem thêm</Button>
+                            <Button href={`/detail/${id}`}  variant="outline-primary">Xem thêm</Button>
                         </Col>
                         <Col className="text-center">
                             <Button variant="outline-success">Lưu</Button>
