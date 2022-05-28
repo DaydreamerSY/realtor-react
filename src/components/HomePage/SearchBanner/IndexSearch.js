@@ -1,7 +1,7 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { InputGroup, FormControl } from 'react-bootstrap';
-import '../scss/IndexBody.scss';
+import '../Home.scss';
 
 class IndexBody extends React.Component {
 

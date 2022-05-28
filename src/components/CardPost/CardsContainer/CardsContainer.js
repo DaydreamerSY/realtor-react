@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import CardPost from "./CardPost";
+import CardPost from "../CardPost";
 import {Col, Row} from "react-bootstrap";
 
 CardsContainer.propTypes = {

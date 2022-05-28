@@ -1,15 +1,15 @@
-import '../scss/App.scss';
+import '../App.scss';
 import {} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, {useState} from 'react';
-import FooterRealtor from "./FooterRealtor";
-import IndexSearch from "./IndexSearch";
-import TitleCardContainer from './TitleCardContainer';
+import FooterRealtor from "../Footer/FooterRealtor";
+import IndexSearch from "./SearchBanner/IndexSearch";
+import SectionRow from './SectionRow/SectionRow';
 
 function Home() {
 
 
-    const [todoList, setTodolList] = useState([
+    const [sections, setSections] = useState([
         {
             id: 1,
             title: "Recommend",
@@ -34,7 +34,7 @@ function Home() {
 
         <div>
             <IndexSearch></IndexSearch>
-            <TitleCardContainer todos={todoList}/>
+            <SectionRow sections={sections}/>
             <FooterRealtor></FooterRealtor>
         </div>
     );

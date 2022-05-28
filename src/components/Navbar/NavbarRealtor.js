@@ -1,13 +1,13 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Button, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
-import '../scss/NavbarRealtor.scss';
+import './NavbarRealtor.scss';
 import {BrowserRouter, Routes, Route, Link, Navigate} from "react-router-dom";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import ErrorPage from "./ErrorPage";
-import Home from "./Home";
-import BuyHome from "./BuyHome";
+import SignIn from "../SignIn/SignIn";
+import SignUp from "../SignUp/SignUp";
+import ErrorPage from "../Error/ErrorPage";
+import Home from "../HomePage/Home";
+import BuyHome from "../Buy/BuyHome";
 
 class NavbarRealtor extends React.Component {
 
@@ -102,7 +102,7 @@ class NavbarRealtor extends React.Component {
                     <Route path="/buy" element={ <BuyHome/> }></Route>
                     <Route exact path="/signin" element={ <SignIn/>}></Route>
                     <Route exact path="/signup" element={ <SignUp/>}></Route>
-                    {/*<Route path="*" element={ <Navigate to="/home"/> }></Route>*/}
+                    {/*-----------------------------------------------*/}
                     <Route path="*" element={ <ErrorPage/> }></Route>
                 </Routes>
             </BrowserRouter>

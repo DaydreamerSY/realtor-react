@@ -1,8 +1,8 @@
-import '../scss/App.scss';
+import './App.scss';
 import {  } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from 'react';
-import NavbarRealtor from "./NavbarRealtor";
+import NavbarRealtor from "./Navbar/NavbarRealtor";
 
 class App extends React.Component {
     constructor(props) {

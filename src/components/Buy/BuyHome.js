@@ -1,9 +1,9 @@
-import '../scss/App.scss';
+import '../App.scss';
 import {  } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from 'react';
-import FooterRealtor from "./FooterRealtor";
-import SearchNavbar from "./SearchNavbar";
+import FooterRealtor from "../Footer/FooterRealtor";
+import SearchNavbar from "./SearchNavbar/SearchNavbar";
 
 class BuyHome extends React.Component {
     constructor(props) {

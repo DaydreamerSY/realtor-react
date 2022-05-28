@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Card, Col, Row} from "react-bootstrap";
-import '../scss/Cards.scss';
+import './CardPost.scss';
 import {Link} from "react-router-dom";
 
 function CardPost(props) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col, Container, Form, FormControl, Button } from "react-bootstrap";
-import '../scss/NavbarRealtor.scss';
+import '../Navbar/NavbarRealtor.scss';
 
 class FooterRealtor extends React.Component {
 
