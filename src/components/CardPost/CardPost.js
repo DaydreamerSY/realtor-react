@@ -14,7 +14,8 @@ function CardPost(props) {
 
     return (
         <Col>
-            <Card style={{width: 18 + `rem`}}>
+            <Card className="cardpost mt-4">
+            {/*<Card style={{width: 18 + `rem`}} className="cardpost">*/}
                 <div className="timer">3 mins ago</div>
                 <Card.Img
                     src="https://cdn.eva.vn/upload/3-2021/images/2021-09-10/image3-1631239323-278-width600height350.jpg"

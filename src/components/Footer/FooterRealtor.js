@@ -9,7 +9,7 @@ class FooterRealtor extends React.Component {
     render() {
         return (
             // <!-- Header session -->
-            <div className="bg-light p-3">
+            <div className="bg-light p-3 mt-5">
                 <Container>
                     <footer className='py-5'>
                         <Row>

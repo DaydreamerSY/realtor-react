@@ -6,24 +6,39 @@ import {Col, Row} from "react-bootstrap";
 CardsContainer.propTypes = {
     apiUrl: PropTypes.string,
     limit: PropTypes.number,
-    page: PropTypes.number
+    offset: PropTypes.number,
 };
 
 CardsContainer.defaultProps = {
     apiUrl: '',
     limit: 1,
-    page: 1,
+    offset: 0,
 }
 
 function CardsContainer(props) {
 
-    const {apiUrl, limit, page} = props;
+    const {apiUrl, limit, offset} = props;
     const [postList, setPostList] = useState([]);
+
+    // console.log(limit);
+    // console.log(offset);
+
+    let apiUrlwithOffset = "";
+
+    if (offset !== 0 ) {
+        console.log(offset);
+        apiUrlwithOffset = apiUrl + `&offset=${offset}`;
+    }
 
     useEffect(() => {
         async function fetchPostList() {
             try {
-                const requestUrl = apiUrl;
+                let requestUrl = ""
+                if (apiUrlwithOffset !== "") {
+                    requestUrl = apiUrlwithOffset;
+                } else {
+                    requestUrl = apiUrl
+                }
                 const headers = {
                     "Content-type": "application/json",
                     // "X-CSRFToken": csrftoken,
@@ -45,7 +60,7 @@ function CardsContainer(props) {
     return (
         <Row>
             {postList.map((post) => (
-                <Col key={post.id}> <CardPost post={post}/> </Col>
+                <Col lg={3} key={post.id}> <CardPost post={post}/> </Col>
             ))}
         </Row>
     );

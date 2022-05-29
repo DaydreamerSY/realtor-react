@@ -35,7 +35,6 @@ function Home() {
         <div>
             <IndexSearch></IndexSearch>
             <SectionRow sections={sections}/>
-            <FooterRealtor></FooterRealtor>
         </div>
     );
 

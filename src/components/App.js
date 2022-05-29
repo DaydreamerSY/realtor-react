@@ -3,6 +3,7 @@ import {  } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from 'react';
 import NavbarRealtor from "./Navbar/NavbarRealtor";
+import FooterRealtor from "./Footer/FooterRealtor";
 
 class App extends React.Component {
     constructor(props) {
@@ -19,9 +20,10 @@ class App extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <>
                 <NavbarRealtor></NavbarRealtor>
-            </React.Fragment>
+                <FooterRealtor></FooterRealtor>
+            </>
         );
     }
 }

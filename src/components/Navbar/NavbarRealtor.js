@@ -9,6 +9,7 @@ import ErrorPage from "../Error/ErrorPage";
 import Home from "../HomePage/Home";
 import BuyHome from "../Buy/BuyHome";
 import PostDetail from "../PostDetail/PostDetail";
+import CreatePost from "../CreatePost/CreatePost";
 
 class NavbarRealtor extends React.Component {
 
@@ -91,7 +92,7 @@ class NavbarRealtor extends React.Component {
                                     </Nav.Link>
                                     <Nav.Link className="hover-underline-animation" href="/signin" to="/signin">Đăng nhập</Nav.Link>
                                     <Nav.Link className="hover-underline-animation" href="/signup">Đăng ký</Nav.Link>
-                                    <Button variant="outline-danger float-end">Đăng tin</Button>
+                                    <Button href="/create" variant="outline-danger float-end">Đăng tin</Button>
                                 </Nav>
                             </Navbar.Collapse>
 
@@ -104,6 +105,7 @@ class NavbarRealtor extends React.Component {
                     <Route path="/signin" element={ <SignIn/>}></Route>
                     <Route path="/signup" element={ <SignUp/>}></Route>
                     <Route path="/detail/:postid" element={ <PostDetail/>}></Route>
+                    <Route path="/create" element={ <CreatePost/>}></Route>
                     {/*-----------------------------------------------*/}
                     <Route path="*" element={ <ErrorPage/> }></Route>
                 </Routes>
