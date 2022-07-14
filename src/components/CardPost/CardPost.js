@@ -3,48 +3,108 @@ import {Button, Card, Col, Row} from "react-bootstrap";
 import './CardPost.scss';
 import {Link, Navigate, useNavigate} from "react-router-dom";
 
+function convertAddress(address,) {
+    let addresses = address.split(", ");
+    return addresses[addresses.length - 3] + ", " + addresses[addresses.length - 2];
+}
+
+function convertPrice(price) {
+    if (price === 0) return "Thỏa thuận";
+    return price > 1 ? price.toString() + " tỷ" : (price * 1000).toString() + " triệu";
+}
+
+function convertImg(imgs) {
+    let img_url = imgs["image_1"];
+    try {
+        if (img_url.includes("https%3A")) {
+            let img_new_url = img_url.replace("http://127.0.0.1:8000/real_estate/media/", "");
+            img_new_url = img_new_url.replace("https%3A", "https:");
+            return img_new_url;
+        } else {
+            return img_url;
+        }
+    } catch (e) {
+        return "https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg";
+    }
+}
+
+function timeSince(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = seconds / 31536000;
+
+    if (interval > 1) {
+        return Math.floor(interval) + " năm";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+        return Math.floor(interval) + " tháng";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+        return Math.floor(interval) + " ngày";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+        return Math.floor(interval) + " giờ";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+        return Math.floor(interval) + " phút";
+    }
+    return Math.floor(seconds) + " giây";
+}
+
+function convertXMinsAgo(created) {
+    return timeSince(Date.parse(created));
+}
+
 function CardPost(props) {
 
     const {post} = props;
-    const {id, title, description, area_by_m2, width_of_facade} = post;
+    const {id, images, title, address, spec_detail, total_price, created_at} = post;
 
-    const apiUrl = "https://realestate-restapi-django3.herokuapp.com/api/re-post-detail/";
-    const detailUrl = apiUrl + id + "/";
+    const dien_tich = spec_detail["area"];
 
+    // const apiUrl = "http://127.0.0.1:8000/api/re-post2-retrieve-update-delete/";
+    // const detailUrl = apiUrl + id + "/";
+
+    const short_address = convertAddress(address);
+    const converted_price = convertPrice(total_price);
+    let img_url = convertImg(images);
+    let last_post = convertXMinsAgo(created_at);
 
     return (
         <Col>
             <Card className="cardpost mt-4">
-            {/*<Card style={{width: 18 + `rem`}} className="cardpost">*/}
-                <div className="timer">3 mins ago</div>
+                {/*<Card style={{width: 18 + `rem`}} className="cardpost">*/}
+                <div className="timer">{last_post}</div>
                 <Card.Img
-                    src="https://cdn.eva.vn/upload/3-2021/images/2021-09-10/image3-1631239323-278-width600height350.jpg"
+                    src={img_url}
                     className="card-img-top"
                     alt="..."/>
                 <Card.Body>
-                    <Card.Title> {title} </Card.Title>
-                    <Card.Text> {description} </Card.Text>
-                    <Row>
-                        <Col><p> Diện tích <span>{area_by_m2} m<sup>2</sup></span></p></Col>
-                        <Col><p> Mặt tiền <span>{width_of_facade} m<sup>2</sup></span></p></Col>
-                        <Col><p>Pháp lý: <span>Sổ đỏ</span></p></Col>
+                    <Card.Title className="card-title"> {title} </Card.Title>
+                    <Card.Text className={"card-address fst-italic"}> {short_address} </Card.Text>
+                    <Row className={"spec_short"}>
+                        <Col className={"text-center"}>
+                            <p className={"fw-normal fs-5"}> {converted_price}</p>
+                        </Col>
+                        <Col className={"text-center"}>
+                            <p className={"fw-normal fs-5"}><span>{dien_tich} m<sup>2</sup></span></p>
+                        </Col>
                     </Row>
-                    <Row>
-                        <p className="card-text mb-2">Địa chỉ:<br/><i>Lộc Tiến, Bảo Lộc, Lâm Đồng</i></p>
-                    </Row>
+                    {/*<Row>*/}
+                    {/*    <p className="card-text mb-2">Địa chỉ:<br/><i>Lộc Tiến, Bảo Lộc, Lâm Đồng</i></p>*/}
+                    {/*</Row>*/}
                     <Row>
                         <Col className="text-center">
-                            <Button href={`/detail/${id}`}  variant="outline-primary">Xem thêm</Button>
+                            <Button href={`/detail/${id}`} variant="outline-primary">Xem</Button>
                         </Col>
                         <Col className="text-center">
                             <Button variant="outline-success">Lưu</Button>
                         </Col>
-                    </Row>
-                    <Row className="mt-2">
-                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Lâm Đồng</Link>
-                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Bảo Lộc</Link>
-                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Sổ hồng</Link>
-                        <Link to="#" className="tag-address text-decoration-none ms-1 me-1 mt-1">Lộc Tiến</Link>
                     </Row>
                 </Card.Body>
 

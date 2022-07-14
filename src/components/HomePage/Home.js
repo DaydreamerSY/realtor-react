@@ -14,19 +14,19 @@ function Home() {
             id: 1,
             title: "Recommend",
             link: "#",
-            apiUrl: "https://realestate-restapi-django3.herokuapp.com/api/re-post-list-pagination/?limit=4&offset=8"
+            apiUrl: "http://127.0.0.1:8000/api/re-post-list-pagination/?limit=4&offset=8"
         },
         {
             id: 2,
             title: "Lastest posts",
             link: "#",
-            apiUrl: "https://realestate-restapi-django3.herokuapp.com/api/re-post-list-pagination/?limit=4&offset=8"
+            apiUrl: "http://127.0.0.1:8000/api/re-post-list-pagination/?limit=4&offset=8"
         },
         {
             id: 3,
             title: "Upcoming",
             link: "#",
-            apiUrl: "https://realestate-restapi-django3.herokuapp.com/api/re-post-list-pagination/?limit=4&offset=8"
+            apiUrl: "http://127.0.0.1:8000/api/re-post-list-pagination/?limit=4&offset=8"
         },
     ]);
 

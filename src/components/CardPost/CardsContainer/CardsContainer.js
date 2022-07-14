@@ -1,51 +1,74 @@
 import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import CardPost from "../CardPost";
-import {Col, Row} from "react-bootstrap";
+import queryString from 'query-string';
+import Paginationer from "../Paginationer/Paginationer";
+import {Col, Container, Row} from "react-bootstrap";
 
 CardsContainer.propTypes = {
     apiUrl: PropTypes.string,
     limit: PropTypes.number,
     offset: PropTypes.number,
+    has_pagination: PropTypes.bool,
 };
 
 CardsContainer.defaultProps = {
     apiUrl: '',
     limit: 1,
     offset: 0,
+    has_pagination: false,
 }
 
 function CardsContainer(props) {
 
-    const {apiUrl, limit, offset} = props;
+    const {apiUrl, limit, offset, has_pagination} = props;
     const [postList, setPostList] = useState([]);
 
-    // console.log(limit);
-    // console.log(offset);
+    const [pagination, setPagination] = useState({
+        offset: 0,
+        limit: limit,
+        count: 10,
+    });
 
-    let apiUrlwithOffset = "";
+    const [filters, setFilters] = useState({
+        limit: limit,
+        offset: 0
+    })
 
-    if (offset !== 0 ) {
-        console.log(offset);
-        apiUrlwithOffset = apiUrl + `&offset=${offset}`;
+    function handlePageChange(newOffset) {
+        setFilters({
+            ...filters,
+            offset: newOffset,
+        })
     }
+
+    const paramString = queryString.stringify(filters);
+    const apiUrloffset = apiUrl + `?${paramString}`;
 
     useEffect(() => {
         async function fetchPostList() {
             try {
-                let requestUrl = ""
-                if (apiUrlwithOffset !== "") {
-                    requestUrl = apiUrlwithOffset;
-                } else {
-                    requestUrl = apiUrl
-                }
+                let requestUrl = apiUrloffset;
                 const headers = {
                     "Content-type": "application/json",
                     // "X-CSRFToken": csrftoken,
                 };
                 const response = await fetch(requestUrl, {headers: headers});
                 const responseJson = await response.json();
-                const {results} = responseJson;
+                const {results, count, next, previous} = responseJson;
+                try{
+                    setPagination({
+                    ...pagination,
+                    count: count,
+                    offset: next.split('offset=')[1] - filters["limit"]
+                })
+                }catch (e) {
+                    setPagination({
+                    ...pagination,
+                    count: count,
+                    offset: previous.split('offset=')[1] + filters["limit"]
+                })
+                }
                 setPostList(results);
             } catch (e) {
                 console.log(e.message);
@@ -54,14 +77,22 @@ function CardsContainer(props) {
         }
 
         fetchPostList();
-    }, [])
+    }, [filters])
 
+    // console.log(postList)
 
     return (
         <Row>
             {postList.map((post) => (
                 <Col lg={3} key={post.id}> <CardPost post={post}/> </Col>
             ))}
+            {has_pagination ?
+                <Paginationer
+                    pagination={pagination}
+                    onPageChange={handlePageChange}
+                />
+                :
+                <div></div>}
         </Row>
     );
 }
