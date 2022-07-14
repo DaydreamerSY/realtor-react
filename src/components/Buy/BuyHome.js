@@ -14,6 +14,26 @@ function BuyHome(props) {
     const apiUrl = "http://127.0.0.1:8000/api/re-post2-list-create/";
     const has_pagination = true;
 
+    const [filters, setFilters] = useState({
+        min_price: "",
+        max_price: "",
+        min_area: "",
+        max_area: "",
+        min_mattien: "",
+        max_mattien: "",
+        min_duongvao: "",
+        max_duongvao: "",
+        min_bedroom: "",
+        max_bedroom: "",
+        min_toilet: "",
+        max_toilet: "",
+        region: "",
+        huong_nha: "",
+        phap_ly: "",
+        limit: limit,
+        offset: 0
+    })
+
     return (
         <React.Fragment>
             <SearchNavbar></SearchNavbar>

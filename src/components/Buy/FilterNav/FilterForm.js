@@ -134,8 +134,8 @@ function FilterForm(props) {
                 <Form className="mb-3">
                     <FormGroup>
                         <Form.Label><IconLegal/> Hợp pháp</Form.Label>
-                        <Form.Check type="checkbox" id="checkboxLegal" label="Sổ đỏ/hồng"/>
-                        <Form.Check type="checkbox" id="checkboxNoneLegal" label="Giấy tay"/>
+                        <Form.Check type="checkbox" id="checkboxLegal" label="Sổ đỏ/ Sổ hồng"/>
+                        <Form.Check type="checkbox" id="checkboxNoneLegal" label="Khác"/>
                     </FormGroup>
                 </Form>
                 <hr/>
