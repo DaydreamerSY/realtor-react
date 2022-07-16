@@ -24,6 +24,15 @@ function Paginationer(props) {
         // tạo mạng gồm các nút page
         var btns = [];
 
+        if (count <= limit) {
+            btns.push({
+                "page": 1,
+                "active": "active",
+            });
+            return btns
+        }
+
+
         var min_page = current - 5 <= 0 ? 1 : current - 5;
         var max_page = current + 5 > count ? count : (current + 5 < 10 ? 10 : current + 5);
 

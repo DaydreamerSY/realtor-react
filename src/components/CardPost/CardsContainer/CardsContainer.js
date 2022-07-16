@@ -1,9 +1,9 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import PropTypes from 'prop-types';
 import CardPost from "../CardPost";
 import queryString from 'query-string';
 import Paginationer from "../Paginationer/Paginationer";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 CardsContainer.propTypes = {
     apiUrl: PropTypes.string,
@@ -21,17 +21,17 @@ CardsContainer.defaultProps = {
 
 function CardsContainer(props) {
 
-    const {apiUrl, limit, offset, has_pagination} = props;
+    const {apiUrl, limitoffset, has_pagination} = props;
     const [postList, setPostList] = useState([]);
 
     const [pagination, setPagination] = useState({
-        offset: 0,
-        limit: limit,
+        offset: limitoffset["offset"],
+        limit: limitoffset["limit"],
         count: 10,
     });
 
     const [filters, setFilters] = useState({
-        limit: limit,
+        limit: limitoffset["limit"],
         offset: 0
     })
 
@@ -44,6 +44,7 @@ function CardsContainer(props) {
 
     const paramString = queryString.stringify(filters);
     const apiUrloffset = apiUrl + `?${paramString}`;
+    console.log(apiUrloffset)
 
     useEffect(() => {
         async function fetchPostList() {
@@ -98,3 +99,6 @@ function CardsContainer(props) {
 }
 
 export default CardsContainer;
+
+// parent -> gọi <Paginationer onPageChange={hàm xử lý event handleChange}>
+// -> child lấy hàm handleChange từ props[onPageChange] -> gọi hàm onPageChange(tham số) để parent xử lý
